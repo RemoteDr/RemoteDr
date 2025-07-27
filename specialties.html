@@ -1,1 +1,92 @@
-Specialties listing page placeholder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RemoteDr Specialists</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      color: #222;
+      background: #f9fafb;
+    }
+    h1 {
+      color: #003366;
+      font-weight: 800;
+      border-bottom: 3px solid #0073e6;
+      padding-bottom: 0.5rem;
+    }
+    #search {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      margin: 1rem 0 2rem;
+      font-size: 1rem;
+      border: 2px solid #0073e6;
+      border-radius: 6px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      background: white;
+      margin-bottom: 1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    li:hover {
+      background: #0073e6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Our Medical Specialties</h1>
+
+  <input type="search" id="search" placeholder="Search specialties..." aria-label="Search specialties" />
+
+  <ul id="specialties-list">
+    <li data-link="primary-care.html">Primary Care</li>
+    <li data-link="allergy.html">Allergy &amp; Immunology</li>
+    <li data-link="fqhc.html">FQHC Clinics</li>
+    <li data-link="behavioral-health.html">Behavioral Health</li>
+    <li data-link="gastroenterology.html">Gastroenterology</li>
+    <li data-link="podiatry.html">Podiatry</li>
+    <li data-link="urgent-care.html">Urgent Care</li>
+    <li data-link="pediatrics.html">Pediatrics</li>
+    <li data-link="obgyn.html">OB/GYN</li>
+  </ul>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const specialtiesList = document.getElementById('specialties-list');
+    const items = specialtiesList.getElementsByTagName('li');
+
+    searchInput.addEventListener('input', () => {
+      const filter = searchInput.value.toLowerCase();
+      Array.from(items).forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
+
+    // Navigate to specialty page on click
+    specialtiesList.addEventListener('click', e => {
+      if(e.target && e.target.tagName === 'LI'){
+        const link = e.target.getAttribute('data-link');
+        if(link){
+          window.location.href = link;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
