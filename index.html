@@ -1,139 +1,289 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RemoteDR - Medical Billing Specialties</title>
-  <meta name="description" content="RemoteDR is an AI-powered RCM company providing medical billing, coding, and end-to-end revenue cycle management services." />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <style>
-    body { font-family: Arial, sans-serif; }
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RemoteDR - AI-Powered Medical Billing & Specialties</title>
+    <meta name="description" content="RemoteDR is an AI-powered RCM company providing medical billing, coding, and end-to-end revenue cycle management services." />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f4c75',
+                        secondary: '#3282b8',
+                        accent: '#bbe1fa',
+                        darkbg: '#121212',
+                        darkcard: '#1e1e1e'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        /* Hide scrollbar for the specialty list if it overflows */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-white text-gray-800">
-  <!-- Sticky Navigation -->
-  <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="text-blue-800 font-bold text-xl">RemoteDR</div>
-      <div class="space-x-4 text-sm font-semibold">
-        <a href="#hero" class="text-blue-700 hover:underline">Home</a>
-        <a href="#mission" class="text-blue-700 hover:underline">Mission</a>
-        <a href="#services" class="text-blue-700 hover:underline">Services</a>
-        <a href="#why" class="text-blue-700 hover:underline">Why Us</a>
-        <a href="#specialties" class="text-blue-700 hover:underline">Specialties</a>
-        <a href="#contact" class="text-blue-700 hover:underline">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="hero" class="bg-blue-50 py-12 border-b text-center">
-    <div class="max-w-6xl mx-auto px-4">
-      <h1 class="text-4xl font-bold text-blue-800 mb-2">RemoteDR</h1>
-      <p class="text-lg text-blue-600 mb-6">Your financial pathway starts here</p>
-      <h2 class="text-2xl font-semibold mb-4">We Are AI-Powered RCM Supporters</h2>
-      <p class="text-lg max-w-2xl mx-auto mb-6">Expert medical billing and coding, with complete end-to-end revenue cycle management (RCM) solutions.</p>
-      <a href="#contact" class="inline-block bg-blue-700 text-white px-6 py-3 rounded font-semibold hover:bg-blue-800 transition">Get In Touch</a>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-12 bg-blue-700 text-white text-center">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Revenue Cycle?</h2>
-      <p class="text-lg mb-6">Partner with RemoteDR to experience precision, performance, and profitability.</p>
-      <a href="#contact" class="inline-block bg-white text-blue-700 font-bold px-6 py-3 rounded hover:bg-gray-100 transition">Contact Us Today</a>
-    </div>
-  </section>
-
-  <!-- Mission Section -->
-  <section id="mission" class="py-12 border-b bg-white">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-blue-800 mb-4">Our Mission</h2>
-      <p class="text-lg max-w-3xl mx-auto">At RemoteDR, our mission is to empower healthcare practices with intelligent, integrated, and scalable revenue cycle management services. We simplify the complexities of medical billing and coding through AI-powered solutions designed for accuracy, efficiency, and growth.</p>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="py-12 bg-gray-50 border-b">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-blue-800 mb-6 text-center">Our Services</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 border rounded shadow">
-          <h3 class="text-lg font-semibold mb-2">Medical Billing</h3>
-          <p>Accurate and compliant billing processes to maximize reimbursements and reduce errors.</p>
+<body class="bg-gray-50 text-gray-800 dark:bg-darkbg dark:text-gray-200 transition-colors duration-300">
+    
+    <nav class="bg-white dark:bg-gray-900 border-b dark:border-gray-800 sticky top-0 z-50 shadow-sm transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-blue-800 dark:text-blue-400 font-bold text-2xl tracking-wide">
+                Remote<span class="text-secondary dark:text-accent">DR</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-6 text-sm font-semibold">
+                <a href="#hero" class="text-blue-700 dark:text-blue-300 hover:text-secondary transition">Home</a>
+                <a href="#mission" class="text-blue-700 dark:text-blue-300 hover:text-secondary transition">Mission</a>
+                <a href="#services" class="text-blue-700 dark:text-blue-300 hover:text-secondary transition">Services</a>
+                <a href="#specialties" class="text-blue-700 dark:text-blue-300 hover:text-secondary transition">Specialties</a>
+                <a href="#why" class="text-blue-700 dark:text-blue-300 hover:text-secondary transition">Why Us</a>
+                <a href="#contact" class="text-blue-700 dark:text-blue-300 hover:text-secondary transition">Contact</a>
+                <button id="theme-toggle" class="ml-4 px-4 py-2 text-sm border border-secondary text-secondary dark:border-accent dark:text-accent rounded-full hover:bg-secondary hover:text-white dark:hover:bg-accent dark:hover:text-primary transition">
+                    🌙 Dark Mode
+                </button>
+            </div>
         </div>
-        <div class="bg-white p-6 border rounded shadow">
-          <h3 class="text-lg font-semibold mb-2">Medical Coding</h3>
-          <p>Expert coding by certified professionals, ensuring proper documentation and claims approval.</p>
-        </div>
-        <div class="bg-white p-6 border rounded shadow">
-          <h3 class="text-lg font-semibold mb-2">RCM End-to-End</h3>
-          <p>From patient registration to final payment posting—we manage the full revenue cycle.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Why Us Section -->
-  <section id="why" class="py-12 border-b bg-white">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-blue-800 mb-6">Why Choose RemoteDR?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-blue-50 p-6 rounded shadow">
-          <h3 class="text-lg font-semibold mb-2">AI-Driven Accuracy</h3>
-          <p>Utilizing machine learning to enhance claim precision and reduce denials.</p>
+    <section id="hero" class="bg-blue-50 dark:bg-gray-800 py-16 border-b dark:border-gray-700 text-center transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4">
+            <h1 class="text-5xl font-extrabold text-blue-900 dark:text-white mb-4">RemoteDR</h1>
+            <p class="text-xl text-blue-600 dark:text-blue-300 mb-6 font-medium">Your financial pathway starts here</p>
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">We Are AI-Powered RCM Supporters</h2>
+            <p class="text-lg max-w-2xl mx-auto mb-8 text-gray-600 dark:text-gray-300">
+                Expert medical billing, precise coding, and complete end-to-end revenue cycle management (RCM) solutions. We reduce denials and accelerate your cash flow.
+            </p>
+            <a href="#contact" class="inline-block bg-blue-700 dark:bg-blue-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-blue-800 dark:hover:bg-blue-500 hover:-translate-y-1 transition transform duration-200">
+                Get Your Free Practice Audit
+            </a>
         </div>
-        <div class="bg-blue-50 p-6 rounded shadow">
-          <h3 class="text-lg font-semibold mb-2">Compliance & Security</h3>
-          <p>HIPAA-compliant workflows and rigorous data protection protocols.</p>
+    </section>
+
+    <section id="mission" class="py-16 border-b dark:border-gray-800 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-blue-800 dark:text-blue-400 mb-6">Our Mission</h2>
+            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                At RemoteDR, our mission is to empower healthcare practices with intelligent, integrated, and scalable revenue cycle management services. We simplify the complexities of medical billing and coding through AI-powered solutions designed for accuracy, efficiency, and practice growth.
+            </p>
         </div>
-        <div class="bg-blue-50 p-6 rounded shadow">
-          <h3 class="text-lg font-semibold mb-2">Scalable Support</h3>
-          <p>Designed to grow with your practice, from solo providers to large networks.</p>
+    </section>
+
+    <section id="services" class="py-16 bg-gray-50 dark:bg-darkbg border-b dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-800 dark:text-blue-400 mb-10 text-center">End-to-End RCM Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-darkcard p-6 border-t-4 border-secondary dark:border-accent rounded-lg shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">👥 Patient Demographics</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Accurate entry and AI-assisted verification of patient data to prevent downstream claim rejections before they happen.</p>
+                </div>
+                <div class="bg-white dark:bg-darkcard p-6 border-t-4 border-secondary dark:border-accent rounded-lg shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">🛡️ Eligibility & Benefits</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Real-time verification of active coverage, copays, deductibles, and authorization requirements.</p>
+                </div>
+                <div class="bg-white dark:bg-darkcard p-6 border-t-4 border-secondary dark:border-accent rounded-lg shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">📝 Charge & Coding</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Expert coding by certified professionals and automated code scrubbing to ensure claims are 100% compliant.</p>
+                </div>
+                <div class="bg-white dark:bg-darkcard p-6 border-t-4 border-secondary dark:border-accent rounded-lg shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">💰 Payment Posting</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Rapid processing of ERAs and manual EOBs, ensuring your practice ledgers match your bank deposits.</p>
+                </div>
+                <div class="bg-white dark:bg-darkcard p-6 border-t-4 border-secondary dark:border-accent rounded-lg shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">🔍 Denial Management</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Aggressive, expert-led root cause analysis and immediate appeals to capture every dollar owed.</p>
+                </div>
+                <div class="bg-white dark:bg-darkcard p-6 border-t-4 border-secondary dark:border-accent rounded-lg shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">📈 Accounts Receivable</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Relentless follow-up on aging accounts (30/60/90+ days) prioritizing high-value recoverable claims.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Specialties Section WITHOUT Search -->
-  <section id="specialties" class="py-12 border-b">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-blue-800 mb-4 text-center">Explore Specialties</h2>
-      <div id="specialtyList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <a href="#" class="specialty-link block p-4 bg-white border rounded shadow hover:bg-blue-50">Allergy & Immunology</a>
-        <a href="#" class="specialty-link block p-4 bg-white border rounded shadow hover:bg-blue-50">FQHC Clinics</a>
-        <a href="#" class="specialty-link block p-4 bg-white border rounded shadow hover:bg-blue-50">Behavioral Health</a>
-        <a href="#" class="specialty-link block p-4 bg-white border rounded shadow hover:bg-blue-50">Gastroenterology</a>
-        <a href="#" class="specialty-link block p-4 bg-white border rounded shadow hover:bg-blue-50">Podiatry</a>
-        <a href="#" class="specialty-link block p-4 bg-white border rounded shadow hover:bg-blue-50">Urgent Care</a>
-        <a href="#" class="specialty-link block p-4 bg-white border rounded shadow hover:bg-blue-50">Pediatrics</a>
-        <a href="#" class="specialty-link block p-4 bg-white border rounded shadow hover:bg-blue-50">OB/GYN</a>
-      </div>
-    </div>
-  </section>
+    <section class="py-16 bg-white dark:bg-gray-900 border-b dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-800 dark:text-blue-400 mb-4 text-center">How We Transform Your Practice</h2>
+            <p class="text-center max-w-2xl mx-auto mb-10 text-gray-600 dark:text-gray-400">We don't just process claims; we act as your financial partners.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 dark:bg-darkcard p-6 border-l-4 border-green-500 rounded shadow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">📈 Maximize Your Revenue</h3>
+                    <p class="text-gray-600 dark:text-gray-400">We stop revenue leakage by catching under-coding and aggressively appealing unjust denials your in-house staff might write off.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-darkcard p-6 border-l-4 border-green-500 rounded shadow">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">⏱️ Accelerate Cash Flow</h3>
+                    <p class="text-gray-600 dark:text-gray-400">By submitting clean claims within 24 hours, we significantly reduce your Days in A/R and get money into your account faster.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Contact Section Using Google Form -->
-  <section id="contact" class="bg-white py-16 border-t">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-blue-800 mb-4">Contact Us</h2>
-      <p class="text-lg mb-8">Fill out the form below to get in touch with our team.</p>
-      <div class="w-full">
-        <iframe src="https://forms.gle/A1NbqZU6XRfu8AcYA" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-      </div>
-    </div>
-  </section>
+    <section id="specialties" class="py-16 bg-blue-50 dark:bg-gray-800 border-b dark:border-gray-700 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-800 dark:text-blue-400 mb-4 text-center">Specialty-Specific Expertise</h2>
+            <p class="text-center max-w-3xl mx-auto mb-10 text-gray-700 dark:text-gray-300">Every specialty has unique coding rules. Our workflows are highly calibrated for the specific nuances, codes, and typical denials of your practice.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white dark:bg-darkcard p-6 rounded-xl shadow-lg border dark:border-gray-700">
+                    <h3 class="text-2xl font-bold text-blue-800 dark:text-blue-300 border-b border-gray-200 dark:border-gray-700 pb-3 mb-4 text-center">Primary Care (PCP)</h3>
+                    <div class="mb-4">
+                        <h4 class="text-green-600 dark:text-green-400 font-bold mb-2 flex items-center">✅ Common Codes Billed</h4>
+                        <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400 list-disc pl-5">
+                            <li><strong>99213/99214:</strong> Established Patient Visits</li>
+                            <li><strong>99391-99397:</strong> Preventive Medicine Services</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-red-500 dark:text-red-400 font-bold mb-2 flex items-center">⚠️ Denials Mastered</h4>
+                        <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400 list-disc pl-5">
+                            <li><strong>CO-11:</strong> Diagnosis/procedure mismatch (Medical Necessity).</li>
+                            <li><strong>CO-97:</strong> Bundled services (Modifiers 25/59 needed).</li>
+                        </ul>
+                    </div>
+                </div>
 
-  <!-- Footer -->
-  <footer class="bg-blue-900 text-white mt-10">
-    <div class="max-w-6xl mx-auto px-4 py-4 text-center">
-      <h2 class="text-xl font-bold mb-1">Let’s Talk About Your Revenue Goals</h2>
-      <p class="text-sm">Reach out today and discover how RemoteDR can transform your billing and collections.</p>
-      <p class="text-xs mt-2">© 2026 RemoteDR. All rights reserved.</p>
-    </div>
-  </footer>
+                <div class="bg-white dark:bg-darkcard p-6 rounded-xl shadow-lg border dark:border-gray-700">
+                    <h3 class="text-2xl font-bold text-blue-800 dark:text-blue-300 border-b border-gray-200 dark:border-gray-700 pb-3 mb-4 text-center">Allergy & Immunology</h3>
+                    <div class="mb-4">
+                        <h4 class="text-green-600 dark:text-green-400 font-bold mb-2 flex items-center">✅ Common Codes Billed</h4>
+                        <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400 list-disc pl-5">
+                            <li><strong>95004:</strong> Percutaneous Allergy Skin Tests</li>
+                            <li><strong>95115/95117:</strong> Allergen Immunotherapy Injections</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-red-500 dark:text-red-400 font-bold mb-2 flex items-center">⚠️ Denials Mastered</h4>
+                        <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400 list-disc pl-5">
+                            <li><strong>CO-119:</strong> Benefit max reached (Exceeding max units).</li>
+                            <li><strong>CO-50:</strong> Non-covered (Experimental testing limits).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-darkcard p-6 rounded-xl shadow-lg border dark:border-gray-700">
+                    <h3 class="text-2xl font-bold text-blue-800 dark:text-blue-300 border-b border-gray-200 dark:border-gray-700 pb-3 mb-4 text-center">Behavioral Health</h3>
+                    <div class="mb-4">
+                        <h4 class="text-green-600 dark:text-green-400 font-bold mb-2 flex items-center">✅ Common Codes Billed</h4>
+                        <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400 list-disc pl-5">
+                            <li><strong>90834/90837:</strong> Individual Psychotherapy</li>
+                            <li><strong>90791:</strong> Psychiatric Diagnostic Evaluation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-red-500 dark:text-red-400 font-bold mb-2 flex items-center">⚠️ Denials Mastered</h4>
+                        <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400 list-disc pl-5">
+                            <li><strong>CO-197:</strong> Missing Pre-Certification/Authorization.</li>
+                            <li><strong>CO-4:</strong> Missing Telehealth modifiers (95/GT).</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-darkcard p-6 rounded-xl shadow-lg border dark:border-gray-700">
+                    <h3 class="text-2xl font-bold text-blue-800 dark:text-blue-300 border-b border-gray-200 dark:border-gray-700 pb-3 mb-4 text-center">FQHC Clinics</h3>
+                    <div class="mb-4">
+                        <h4 class="text-green-600 dark:text-green-400 font-bold mb-2 flex items-center">✅ Common Codes Billed</h4>
+                        <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400 list-disc pl-5">
+                            <li><strong>T1015:</strong> Clinic Visit / Encounter Code</li>
+                            <li><strong>Rev Code 0521:</strong> Rural Health Clinic/FQHC Services</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-red-500 dark:text-red-400 font-bold mb-2 flex items-center">⚠️ Denials Mastered</h4>
+                        <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400 list-disc pl-5">
+                            <li><strong>CO-16:</strong> Invalid info (PPS rate mismatch or missing T1015).</li>
+                            <li><strong>CO-22:</strong> Coordination of benefits (Medicaid crossovers).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold text-center text-gray-700 dark:text-gray-300 mb-6">Other Specialties We Support</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="px-4 py-2 bg-white dark:bg-darkcard text-blue-800 dark:text-blue-300 border border-gray-200 dark:border-gray-700 rounded-full font-medium shadow-sm">Gastroenterology</span>
+                <span class="px-4 py-2 bg-white dark:bg-darkcard text-blue-800 dark:text-blue-300 border border-gray-200 dark:border-gray-700 rounded-full font-medium shadow-sm">Podiatry</span>
+                <span class="px-4 py-2 bg-white dark:bg-darkcard text-blue-800 dark:text-blue-300 border border-gray-200 dark:border-gray-700 rounded-full font-medium shadow-sm">Urgent Care</span>
+                <span class="px-4 py-2 bg-white dark:bg-darkcard text-blue-800 dark:text-blue-300 border border-gray-200 dark:border-gray-700 rounded-full font-medium shadow-sm">Pediatrics</span>
+                <span class="px-4 py-2 bg-white dark:bg-darkcard text-blue-800 dark:text-blue-300 border border-gray-200 dark:border-gray-700 rounded-full font-medium shadow-sm">OB/GYN</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="why" class="py-16 bg-white dark:bg-gray-900 border-b dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-blue-800 dark:text-blue-400 mb-10">Why Choose RemoteDR?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-blue-50 dark:bg-darkcard p-8 rounded-xl shadow border dark:border-gray-700">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">AI-Driven Accuracy</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Utilizing machine learning to automate data entry, scrub claims for millions of rules, and reduce denials.</p>
+                </div>
+                <div class="bg-blue-50 dark:bg-darkcard p-8 rounded-xl shadow border dark:border-gray-700">
+                    <div class="text-4xl mb-4">🛡️</div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Compliance & Security</h3>
+                    <p class="text-gray-600 dark:text-gray-400">HIPAA-compliant workflows, NCCI edits monitoring, and rigorous data protection protocols.</p>
+                </div>
+                <div class="bg-blue-50 dark:bg-darkcard p-8 rounded-xl shadow border dark:border-gray-700">
+                    <div class="text-4xl mb-4">📈</div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Scalable Support</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Led by seasoned RCM mentors, designed to grow with your practice from solo providers to large networks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-blue-50 dark:bg-darkbg py-16 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-blue-800 dark:text-blue-400 mb-4">Ready to Transform Your Revenue Cycle?</h2>
+            <p class="text-lg mb-10 text-gray-700 dark:text-gray-300">Fill out the form below to get in touch with our team for a free consultation.</p>
+            
+            <div class="w-full bg-white dark:bg-gray-800 p-2 md:p-6 rounded-xl shadow-lg border dark:border-gray-700">
+                <iframe src="https://forms.gle/A1NbqZU6XRfu8AcYA" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Loading…</iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-blue-900 dark:bg-black text-white py-10 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-3">Let’s Talk About Your Revenue Goals</h2>
+            <p class="text-blue-200 mb-6">Reach out today and discover how RemoteDR can transform your billing and collections.</p>
+            <div class="flex justify-center space-x-6 text-sm text-blue-300 mb-6">
+                <p>📧 contact@remotedr.com</p>
+                <p>📍 Operations: Ahmedabad | Serving US Providers</p>
+            </div>
+            <p class="text-sm text-gray-400 border-t border-blue-800 dark:border-gray-800 pt-6">
+                © 2026 RemoteDR. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check local storage for preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            themeToggleBtn.textContent = '☀️ Light Mode';
+        }
+
+        // Toggle functionality
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            
+            if (htmlElement.classList.contains('dark')) {
+                themeToggleBtn.textContent = '☀️ Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggleBtn.textContent = '🌙 Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 </body>
 </html>
