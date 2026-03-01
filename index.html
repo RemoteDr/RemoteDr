@@ -241,7 +241,13 @@
             <p class="text-lg mb-10 text-gray-700 dark:text-gray-300">Fill out the form below to get in touch with our team for a free consultation.</p>
             
             <div class="w-full bg-white dark:bg-gray-800 p-8 md:p-10 rounded-xl shadow-lg border dark:border-gray-700 text-left">
-                <form action="#" method="POST" class="space-y-6">
+                
+                <form id="remotedr-form" action="https://formsubmit.co/remotedrrcm@gmail.com" method="POST" class="space-y-6">
+                    
+                    <input type="hidden" name="_subject" value="New Lead from RemoteDR Website!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name / Practice Name</label>
@@ -260,10 +266,17 @@
                         <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">How can we help?</label>
                         <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary bg-gray-50 dark:bg-gray-700 dark:text-white transition-colors" placeholder="Tell us about your current billing challenges..." required></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-blue-700 dark:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-500 transition-colors shadow-md">
+                    <button type="submit" id="submit-btn" class="w-full bg-blue-700 dark:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-500 transition-colors shadow-md">
                         Send Message
                     </button>
                 </form>
+
+                <div id="thank-you-message" class="hidden text-center py-8">
+                    <div class="text-6xl mb-4">✅</div>
+                    <h3 class="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">Message Sent Successfully!</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Thank you for reaching out to RemoteDR. Our team has received your information and will be in touch shortly.</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -283,6 +296,7 @@
     </footer>
 
     <script>
+        // 1. Dark Mode Toggle
         const themeToggleBtn = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
 
@@ -303,6 +317,52 @@
                 localStorage.setItem('theme', 'light');
             }
         });
+
+        // 2. Form Submission Handling (AJAX)
+        const contactForm = document.getElementById('remotedr-form');
+        const thankYouMessage = document.getElementById('thank-you-message');
+        const submitBtn = document.getElementById('submit-btn');
+
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop the page from refreshing or redirecting
+                
+                // Change button text to show it's working
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+                const formData = new FormData(contactForm);
+                
+                // Send the data silently in the background
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if(response.ok) {
+                        // Success! Hide form, show Thank You message
+                        contactForm.style.display = 'none';
+                        thankYouMessage.classList.remove('hidden');
+                    } else {
+                        alert("Something went wrong. Please try again.");
+                        submitBtn.textContent = 'Send Message';
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
+                })
+                .catch(error => {
+                    alert("There was an error sending your message. Please email us directly.");
+                    console.error(error);
+                    submitBtn.textContent = 'Send Message';
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                });
+            });
+        }
     </script>
 </body>
 </html>
