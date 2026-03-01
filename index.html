@@ -343,16 +343,14 @@
 
         if(contactForm) {
             contactForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Stop the page from refreshing or redirecting
+                e.preventDefault(); 
                 
-                // Change button text to show it's working
                 submitBtn.textContent = 'Sending...';
                 submitBtn.disabled = true;
                 submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
                 const formData = new FormData(contactForm);
                 
-                // Send the data silently in the background
                 fetch(contactForm.action, {
                     method: 'POST',
                     body: formData,
@@ -362,7 +360,6 @@
                 })
                 .then(response => {
                     if(response.ok) {
-                        // Success! Hide form, show Thank You message
                         contactForm.style.display = 'none';
                         thankYouMessage.classList.remove('hidden');
                     } else {
